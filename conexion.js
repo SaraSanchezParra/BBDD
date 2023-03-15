@@ -79,7 +79,7 @@ connection.connect(function(error){
 //     })
 
 //Obtener todos los datos de los profesores
-// let sql ="SELECT first_name, last_name FROM teachers";
+// let sql ="SELECT id_teacher, first_name, last_name FROM teachers";
 // connection.query(sql, function (err, result){
 //         if(err) {
 //             console.log(err);
@@ -120,3 +120,160 @@ connection.connect(function(error){
 
 //             }
 //         });
+
+//Día2
+
+
+//Usando el ejemplo de base de datos que tenemos ya implementado desde unidades anteriores,
+//calcular la nota media de los alumnos de la asignatura 1.
+
+//SELECT AVG(mark) FROM marks WHERE subject_id = 1;
+
+// let sql = "SELECT AVG(mark) FROM marks WHERE subject_id = 1";
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Nota media de los alumnos de la asignatura 1.');
+//                 console.log(result);
+
+//             }
+//         });
+
+// Calcular el número total de alumnos que hay en el bootcamp.
+
+// let sql = "SELECT COUNT(*) FROM students";
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Número total de alumnos en el Bootcamp');
+//                 console.log(result);
+
+//             }
+//         });
+
+
+// Listar todos los campos de la tabla “groups”.
+
+// let sql ="SELECT * FROM grupos";
+// connection.query(sql, function (err, result){
+//         if(err) {
+//             console.log(err);
+//         }
+//         else {
+//             console.log('Selección realizada.');
+//             console.log(result);
+
+//         }
+//     });
+
+// Elimina todas las notas de la base de datos que estén por encima de 5 y que sean del año
+// pasado (no utilices BETWEEN).
+
+// let sql = "DELETE FROM marks WHERE mark >= 5 AND date > '2022-01-01'";
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Notas del año pasado borradas');
+//                 console.log(result);
+
+//             }
+//         });
+
+// Obtén los datos de todos los estudiantes que estén en el bootcamp este año. Para ello la tabla
+// de estudiantes debe tener un campo que sea el año de ingreso.
+
+// let column = "ALTER table students ADD COLUMN Ingreso INT;"
+// connection.query(column, (err, res)=> {
+//     if(err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log('Columna añadida.');
+//         console.log(res)
+//     }
+// })
+
+
+// let sql = "SELECT * FROM students WHERE ingreso > '2022-01-01'";
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Estudiantes que están en el Bootcamp este año');
+//                 console.log(result);
+
+//             }
+//         });
+
+// Calcular el numero de profesores que hay por cada asignatura.
+
+// let sql = "SELECT subject_id, COUNT(*) AS teachers_subject FROM subject_teacher GROUP BY subject_id";
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Número de profesores por cada asignatura');
+//                 console.log(result);
+
+//             }
+//         });
+
+// El desarrollo de estas consultas se tiene que hacer tanto en Workbench como en Node.js
+
+//RETO2
+// Obtén el id y la nota de los alumnos que tengan un id entre 1 y 20, o que tenga una nota
+// mayor de 8 y la nota tenga fecha del año pasado.
+
+// let sql = "SELECT student_id, mark FROM marks WHERE (student_id BETWEEN 1 AND 20) OR (mark > 8 AND date = '2022-01-01')";
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Nota de los alumnos');
+//                 console.log(result);
+
+//             }
+//         });
+
+
+
+// Obtén la media de las notas que se han dado en el último año por asignatura.
+
+// let sql = "SELECT AVG (mark), subject_id FROM marks WHERE DATE > 01-01-2022 GROUP BY subject_id" ;
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Valor promedio de las notas del último año');
+//                 console.log(result);
+
+//             }
+//         });
+
+
+
+// Obtén la media aritmética de las notas que se han dado en el último año por alumno.
+// let sql = "SELECT AVG (mark), student_id FROM marks WHERE DATE > 01-01-2022 GROUP BY student_id";
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Media aritmética de las notas del último año');
+//                 console.log(result);
+
+//             }
+//         });
+
+// El desarrollo de estas consultas se tiene que hacer tanto en Workbench como en Node.js
+

@@ -24,7 +24,7 @@ connection.connect(function(error){
 //de la exposición, la fecha de expiración de este, la información básica (nombre, apellidos y
 //email) de la persona que los ha prestado.
 // let params =['Prestamo'];
-// let sql = "SELECT Piezas.NombrePieza, Localizacion.nombreLocalizacion, Prestamos.FechaDevolucion, PropietarioPiezas.Nombre, PropietarioPiezas.Apellidos, PropietarioPiezas.Email FROM Piezas JOIN Prestamos ON (Piezas.idPrestamo = Prestamos.idPrestamos) JOIN PropietarioPiezas ON (Prestamos.idPropietario = PropietarioPiezas.idPropietarioPiezas) JOIN Localizacion ON (Piezas.idLocalizacion = Localizacion.idLocalizacion WHERE Prestamos.TipoPrestamo = ?)";
+// let sql = "SELECT Piezas.NombrePieza, Localizacion.nombreLocalizacion, Prestamos.FechaDevolucion, PropietarioPiezas.Nombre, PropietarioPiezas.Apellidos, PropietarioPiezas.Email, Prestamos.TipoPrestamo FROM Piezas JOIN Prestamos ON (Piezas.idPrestamo = Prestamos.idPrestamos) JOIN PropietarioPiezas ON (Prestamos.idPropietario = PropietarioPiezas.idPropietarioPiezas) JOIN Localizacion ON (Piezas.idLocalizacion = Localizacion.idLocalizacion) WHERE Prestamos.TipoPrestamo = ?";
 // connection.query(sql,params, function (err, result){
 //             if(err) {
 //                 console.log(err);
@@ -45,8 +45,8 @@ connection.connect(function(error){
 //• Las consultas se deben realizar en Workbench y en Node.js con sentencias preparadas.
 
 let params =[];
-let sql = "SELECT Colecciones.Tipoexposicion, COUNT(*) AS totalCuadros FROM Colecciones GROUP BY Tipoexposicion ORDER BY totalCuadros DESC";
-connection.query(sql,params, function (err, result){
+let sql = "SELECT Colecciones.Tipoexposicion, COUNT(*) AS totalCuadros FROM Piezas JOIN Colecciones ON (Piezas.idColeccion = Colecciones.idColecciones) GROUP BY Tipoexposicion ORDER BY totalCuadros DESC";
+connection.query(sql, params, function (err, result){
             if(err) {
                 console.log(err);
             }

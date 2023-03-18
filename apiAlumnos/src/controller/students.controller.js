@@ -12,7 +12,7 @@ function getStudent(request, response){
     if(request.query.is == null)
       sql = "SELECT * FROM students";
     else
-      sql = "SELECT * FROM students WHERE id =" + request.query.id;
+      sql = "SELECT * FROM students WHERE student_id =" + request.query.id;
         connection.query(sql, function (err, result)
     {
         if (err)
@@ -66,4 +66,16 @@ connection.query(sql, params, function (err, result){
 })
 }
 
-module.exports = {getStart, getStudent, postStudent, putStudent}
+function deleteStudent(request, response){
+    let sql = "DELETE FROM students";
+    connection.query(sql, function (err, result){
+        if(err)
+        console.log(err);
+        else{
+            console.log("Estudiante borrado");
+            console.log(result)
+        }
+    })
+}
+
+module.exports = {getStart, getStudent, postStudent, putStudent, deleteStudent}

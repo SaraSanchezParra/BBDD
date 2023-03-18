@@ -285,18 +285,18 @@ connection.connect(function(error){
 //están apuntados.
 
 
-// let sql = "SELECT first_name, last_name, title FROM students JOIN marks ON (students.student_id = marks.student_id) JOIN subjects ON(marks.subject_id = subjects.subject_id)"
+let sql = "SELECT first_name, last_name, title FROM students JOIN grupos ON (students.group_id = grupos.group_id) JOIN subject_teacher ON(grupos.group_id = subject_teacher.group_id) JOIN subjects ON(subject_teacher.subject_id = subjects.subject_id)"
 
-// connection.query(sql, function (err, result){
-//             if(err) {
-//                 console.log(err);
-//             }
-//             else {
-//                 console.log('Nombres y apellidos + nombres de las asignaturas');
-//                 console.log(result);
+connection.query(sql, function (err, result){
+            if(err) {
+                console.log(err);
+            }
+            else {
+                console.log('Nombres y apellidos + nombres de las asignaturas');
+                console.log(result);
 
-//             }
-//         });
+            }
+        });
 
 //Reto 2
 //Obtén todos los nombres y apellidos de los profesores y los nombres de las asignaturas que
@@ -333,30 +333,30 @@ connection.connect(function(error){
 // //NOTA: Para que no aparezcan notas repetidas solo debe haber un profesor por asignatura y un grupo
 // //por asignatura y profesor. Todos los retos hay que hacerlos en Workbench y en Node.js con sentencias
 // //preparadas.
-let sql = ` SELECT
-subjects.title,
-teachers.first_name,
-teachers.last_name,
-COUNT(students.student_id) AS total_students
-FROM
-students
-    JOIN
-subject_teacher ON (students.group_id = subject_teacher.group_id)
-    JOIN
-subjects ON (subject_teacher.subject_id = subjects.subject_id)
-    JOIN
-teachers ON (subject_teacher.teacher_id = teachers.teacher_id)
-GROUP BY subjects.title`
-connection.query(sql, function (err, result){
-            if(err) {
-                console.log(err);
-            }
-            else {
-                console.log('Número total de alumnos por asignatura, nombre de la asignatura y nombre y apellidos del profesor');
-                console.log(result);
+// let sql = ` SELECT
+// subjects.title,
+// teachers.first_name,
+// teachers.last_name,
+// COUNT(students.student_id) AS total_students
+// FROM
+// students
+//     JOIN
+// subject_teacher ON (students.group_id = subject_teacher.group_id)
+//     JOIN
+// subjects ON (subject_teacher.subject_id = subjects.subject_id)
+//     JOIN
+// teachers ON (subject_teacher.teacher_id = teachers.teacher_id)
+// GROUP BY subjects.title`
+// connection.query(sql, function (err, result){
+//             if(err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 console.log('Número total de alumnos por asignatura, nombre de la asignatura y nombre y apellidos del profesor');
+//                 console.log(result);
 
-            }
-        });
+//             }
+//         });
 
 
 //SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
